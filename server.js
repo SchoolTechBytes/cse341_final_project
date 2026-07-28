@@ -8,7 +8,7 @@ import router from './routes/routes.js';
 import { connectDB } from './config/db.js';
 import passport from './config/passport.js'
 import { corsOptions } from './config/cors.js';
-import authRoutes from './routes/auth.js';
+//import authRoutes from './routes/auth.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json' with { type: 'json' };
 
@@ -46,7 +46,7 @@ app.use(cors(corsOptions));
 /**
   * Routes
   */
-app.use('/auth', authRoutes);
+//app.use('/auth', authRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(router);
 
