@@ -1,12 +1,14 @@
 import swaggerAutogen from 'swagger-autogen';
 
+const NODE_ENV = process.env.NODE_ENV?.toLocaleLowerCase() || 'production';
+
 const doc = {
     info: {
         title: 'Ticket Support System API',
         description: 'This API is for CSE341 Final Project. REST API for a support ticketing system'
     },
-    host: 'cse341-project-02-beyu.onrender.com',
-    schemes: ['https']
+    host: NODE_ENV === 'production' ? 'cse341-project-02-beyu.onrender.com' : 'localhost:3000',
+    schemes: NODE_ENV === 'production' ? ['https'] : ['http']
 };
 
 const outputFile = './swagger.json';

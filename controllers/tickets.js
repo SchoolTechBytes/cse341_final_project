@@ -1,5 +1,4 @@
 import Tickets from '../models/Tickets.js';
 
-const router = express.Router();
-
-export default router;
+export const getAllTickets = async (req, res, next) => {
+};
