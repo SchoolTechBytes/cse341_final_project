@@ -4,7 +4,7 @@ import userRoutes from './users.js';
 
 const router = express.Router();
 
-router.use('/ticktes', ticketRoutes);
-router.use('/users', userRoutes);
+router.use('/tickets', ticketRoutes);
+//router.use('/users', userRoutes);
 
 export default router;
