@@ -19,7 +19,7 @@ export async function connectDB() {
         throw new Error('MONGODB_URI is not defined in the environment');
     }
 
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, { dbName: 'TSS_CSE341' });
 }
 
 export default mongoose;
