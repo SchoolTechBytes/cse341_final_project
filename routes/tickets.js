@@ -18,11 +18,11 @@ import { ensureAuth } from '../middleware/ensureAuth.js';
 
 const router = express.Router();
 
-router.post('/tickets', validateCreateTicket, checkValidation, createTicket);
-router.get('/tickets', getAllTickets);
-router.get('/tickets/:id', getTicketById);
-router.put('/tickets/:id/status', validateTicketStatus, checkValidation, updateTicketStatus);
-router.put('/tickets/:id/assign', validateTicketAssign, checkValidation, assignTicketToSupport);
-router.put('/tickets/:id/priority', validateTicketPriority, checkValidation, setTicketPriority);
+router.post('/', validateCreateTicket, checkValidation, createTicket);
+router.get('/', getAllTickets);
+router.get('/:id', getTicketById);
+router.put('/:id/status', validateTicketStatus, checkValidation, updateTicketStatus);
+router.put('/:id/assign', validateTicketAssign, checkValidation, assignTicketToSupport);
+router.put('/:id/priority', validateTicketPriority, checkValidation, setTicketPriority);
 
 export default router;
