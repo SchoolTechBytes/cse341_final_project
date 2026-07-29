@@ -52,7 +52,7 @@ export const updateTicketStatus = async (req, res, next) => {
         }
 
         ticket.status = req.body.status;
-        ticket.closedAt = req.body.status === 'closed' ? new Date() : null;
+        ticket.closedAt = ['closed', 'rejected'].includes(req.body.status) ? new Date() : null;
 
         await ticket.save();
         res.status(200).json(ticket);
