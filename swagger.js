@@ -7,7 +7,7 @@ const doc = {
         title: 'Ticket Support System API',
         description: 'This API is for CSE341 Final Project. REST API for a support ticketing system'
     },
-    host: NODE_ENV === 'production' ? 'cse341-project-02-beyu.onrender.com' : 'localhost:3000',
+    host: NODE_ENV === 'production' ? 'cse341-final-project-ef05.onrender.com' : 'localhost:3000',
     schemes: NODE_ENV === 'production' ? ['https'] : ['http']
 };
 
