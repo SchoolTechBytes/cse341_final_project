@@ -5,9 +5,7 @@ const PRIORITY_VALUES = ['low', 'medium', 'high', 'urgent'];
 
 export const validateCreateTicket = [
     body('title').isString().trim().notEmpty().withMessage('title is required'),
-    body('description').isString().trim().notEmpty().withMessage('description is required'),
-    body('createdBy').isMongoId().withMessage('createdBy must be a valid user id'),
-    body('priority').optional().isIn(PRIORITY_VALUES).withMessage(`priority must be one of ${PRIORITY_VALUES.join(', ')}`)
+    body('description').isString().trim().notEmpty().withMessage('description is required')
 ];
 
 export const validateTicketStatus = [

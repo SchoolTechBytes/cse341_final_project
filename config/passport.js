@@ -8,13 +8,14 @@ passport.use(new GitHubStrategy({
     callbackURL: process.env.GITHUB_CALLBACK_URL
 }, async (accessToken, refreshToken, profile, done) => {
     try {
-        let user = await User.findOne({ githubId: profile.id });
+        let user = await User.findOne({ authProvider: 'github', providerId: profile.id });
         if (!user) {
             user = await User.create({
-                githubId: profile.id,
-                username: profile.username,
-                displayName: profile.displayName,
-                email: profile.emails?.[0]?.value
+                name: profile.displayName || profile.username,
+                email: profile.emails?.[0]?.value,
+                authProvider: 'github',
+                providerId: profile.id,
+                role: 'customer'
             });
         }
         return done(null, user);
@@ -22,18 +23,5 @@ passport.use(new GitHubStrategy({
         return done(err, null);
     }
 }));
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (err) {
-        done(err, null);
-    }
-});
 
 export default passport;

@@ -5,7 +5,8 @@ import {
     createUser,
     updateUser,
     updateUserRole,
-    deleteUser
+    deleteUser,
+    getUserTickets
 } from '../controllers/users.js'
 import {
     validateCreateUser,
@@ -13,15 +14,17 @@ import {
     validateUserRole
 } from '../middleware/validateUser.js';
 import { checkValidation } from '../middleware/checkValidation.js';
-import { ensureAuth } from '../middleware/ensureAuth.js';
+import { sessionAuth } from '../middleware/sessionAuth.js';
+import { requireRole } from '../middleware/requireRole.js';
 
 const router = express.Router();
 
-router.get('/users', getAllUsers);
-router.get('/users/:id', getUserById);
-router.post('/users', validateCreateUser, checkValidation, createUser);
-router.put('/users/:id', validateUpdateUser, checkValidation, updateUser);
-router.put('/users/:id/role', validateUserRole, checkValidation, updateUserRole);
-router.delete('/users/:id', deleteUser);
+router.get('/', sessionAuth, requireRole('admin'), getAllUsers);
+router.get('/:id/tickets', sessionAuth, getUserTickets);
+router.get('/:id', sessionAuth, getUserById);
+router.post('/', sessionAuth, requireRole('admin'), validateCreateUser, checkValidation, createUser);
+router.put('/:id', sessionAuth, validateUpdateUser, checkValidation, updateUser);
+router.put('/:id/role', sessionAuth, requireRole('admin'), validateUserRole, checkValidation, updateUserRole);
+router.delete('/:id', sessionAuth, requireRole('admin'), deleteUser);
 
 export default router;

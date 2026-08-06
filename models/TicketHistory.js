@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ticketHistorySchema = new Schema(
+const ticketHistorySchema = new mongoose.Schema(
     {
         ticketId: {
             type: mongoose.Schema.Types.ObjectId,
