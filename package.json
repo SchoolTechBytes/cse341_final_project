@@ -17,7 +17,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon",
-    "swagger": "node ./swagger.js"
+    "swagger": "node ./swagger.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -33,6 +34,7 @@
     "passport-github2": "^0.1.12"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.14",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
